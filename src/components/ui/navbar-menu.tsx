@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-// Change this to "framer-motion" if you get a module not found error
 import { motion } from "motion/react"; 
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +28,8 @@ return (
     <div onMouseEnter={() => setActive(item)} className="relative ">
     <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+        // Fixed: hover:opacity-[0.9] is now hover:opacity-90
+        className="cursor-pointer text-black hover:opacity-90 dark:text-white"
     >
         {item}
     </motion.p>
@@ -43,11 +43,12 @@ return (
             <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
             <motion.div
                 transition={transition}
-                layoutId="active" // layoutId ensures smooth animation
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                layoutId="active"
+                // Fixed: border-black/[0.2] and dark:border-white/[0.2] updated to /20
+                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/20 dark:border-white/20 shadow-xl"
             >
                 <motion.div
-                layout // layout ensures smooth animation
+                layout
                 className="w-max h-full p-4"
                 >
                 {children}
@@ -70,8 +71,9 @@ children: React.ReactNode;
 }) => {
 return (
     <nav
-    onMouseLeave={() => setActive(null)} // resets the state
-    className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
+    onMouseLeave={() => setActive(null)}
+    // Fixed: dark:border-white/[0.2] updated to /20
+    className="relative rounded-full border border-transparent dark:bg-black dark:border-white/20 bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
     >
     {children}
     </nav>
@@ -90,9 +92,7 @@ href: string;
 src: string;
 }) => {
 return (
-    // Replaced <a> with Next.js <Link>
     <Link href={href} className="flex space-x-2">
-    {/* Replaced <img> with Next.js <Image> */}
     <Image
         src={src}
         width={140}
@@ -104,7 +104,8 @@ return (
         <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
         {title}
         </h4>
-        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
+        {/* Fixed: max-w-[10rem] is now max-w-40 */}
+        <p className="text-neutral-700 text-sm max-w-40 dark:text-neutral-300">
         {description}
         </p>
     </div>
@@ -112,7 +113,6 @@ return (
 );
 };
 
-// Replaced 'any' with proper Next.js Link props, and <a> with <Link>
 export const HoveredLink = ({ children, ...rest }: React.ComponentProps<typeof Link>) => {
 return (
     <Link
