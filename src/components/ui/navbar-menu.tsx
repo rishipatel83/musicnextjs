@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
-
-
+// Change this to "framer-motion" if you get a module not found error
+import { motion } from "motion/react"; 
+import Image from "next/image";
+import Link from "next/link";
 
 const transition = {
 type: "spring" as const,
@@ -38,7 +39,7 @@ return (
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={transition}
         >
-        {active === item && (
+        {active === item && children && (
             <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
             <motion.div
                 transition={transition}
@@ -89,8 +90,10 @@ href: string;
 src: string;
 }) => {
 return (
-    <a href={href} className="flex space-x-2">
-    <img
+    // Replaced <a> with Next.js <Link>
+    <Link href={href} className="flex space-x-2">
+    {/* Replaced <img> with Next.js <Image> */}
+    <Image
         src={src}
         width={140}
         height={70}
@@ -105,17 +108,18 @@ return (
         {description}
         </p>
     </div>
-    </a>
+    </Link>
 );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
+// Replaced 'any' with proper Next.js Link props, and <a> with <Link>
+export const HoveredLink = ({ children, ...rest }: React.ComponentProps<typeof Link>) => {
 return (
-    <a
+    <Link
     {...rest}
     className="text-neutral-700 dark:text-neutral-200 hover:text-black "
     >
     {children}
-    </a>
+    </Link>
 );
 };
