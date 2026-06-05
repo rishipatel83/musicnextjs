@@ -7,6 +7,33 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  /* This automatically creates text-brand, bg-brand, AND var(--color-brand) */
+  --color-brand: #1DA1F2; 
+  --color-surface-dark: #121212;
+}
+
+/* You can immediately use them anywhere in your standard CSS */
+:root {
+  background-color: var(--color-surface-dark);
+}
+
+
+@theme inline {
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
 
 @theme inline {
   --color-background: var(--background);
