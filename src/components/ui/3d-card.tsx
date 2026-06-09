@@ -14,7 +14,7 @@ import React, {
     [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
     >(undefined);
 
-    export const CardContainer = ({
+export const CardContainer = ({
     children,
     className,
     containerClassName,
@@ -74,9 +74,9 @@ import React, {
         </div>
         </MouseEnterContext.Provider>
     );
-    };
+};
 
-    export const CardBody = ({
+export const CardBody = ({
     children,
     className,
     }: {
@@ -93,9 +93,9 @@ import React, {
         {children}
         </div>
     );
-    };
+};
 
-    export const CardItem = ({
+export const CardItem = ({
     as: Tag = "div",
     children,
     className,
@@ -123,9 +123,9 @@ import React, {
 
     useEffect(() => {
         handleAnimations();
-    }, [isMouseEntered]);
+}, [isMouseEntered]);
 
-    const handleAnimations = () => {
+const handleAnimations = () => {
         if (!ref.current) return;
         if (isMouseEntered) {
         ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
@@ -143,10 +143,10 @@ import React, {
         {children}
         </Tag>
     );
-    };
+};
 
     // Create a hook to use the context
-    export const useMouseEnter = () => {
+export const useMouseEnter = () => {
     const context = useContext(MouseEnterContext);
     if (context === undefined) {
         throw new Error("useMouseEnter must be used within a MouseEnterProvider");

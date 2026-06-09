@@ -7,19 +7,25 @@ import courseData from "@/data/music_courses.json"
 function Page() {
     return (
         <div className="min-h-screen bg-black py-12 pt-36">
-            <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">
+            <h1 className="md:text-7xl sm:text-5xl text-3xl text-center font-sans font-bold mb-8 text-white">
                 All Courses ({courseData.courses.length})
             </h1>
-            <div className="flex flex-wrap justify-center">
+            
+            {/* CHANGE 1: Flexbox ko hata kar Grid use kiya aur columns define kiye */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center max-w-7xl mx-auto px-4">
                 {courseData.courses.map((course, index) => (
-                    <CardContainer key={course.id || index} className="inter-var m-4">
-                        <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+                    // CHANGE 2: Margin m-4 hata diya kyunki grid gap use kar rahe hain
+                    <CardContainer key={course.id || index} className="inter-var w-full">
+                        
+                        {/* CHANGE 3: sm:w-[30rem] ko replace karke w-full max-w-[30rem] kiya */}
+                        <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full max-w-[30rem] h-auto rounded-xl p-6 border">
                             <CardItem
                             translateZ="50"
                             className="text-xl font-bold text-neutral-600 dark:text-white"
                             >
                             {course.title}
                             </CardItem>
+                            
                             <CardItem
                             as="p"
                             translateZ="60"
@@ -27,6 +33,7 @@ function Page() {
                             >
                             {course.description}
                             </CardItem>
+                            
                             <CardItem translateZ="100" className="w-full mt-4">
                             <Image
                                 src={course.image}
@@ -36,6 +43,7 @@ function Page() {
                                 alt={course.title}
                             />
                             </CardItem>
+                            
                             <div className="flex justify-between items-center mt-20">
                             <CardItem
                                 translateZ={20}
@@ -55,8 +63,8 @@ function Page() {
                             </CardItem>
                             </div>
                         </CardBody>
-                        </CardContainer>
-                    ))}
+                    </CardContainer>
+                ))}
             </div>
         </div>
     )
