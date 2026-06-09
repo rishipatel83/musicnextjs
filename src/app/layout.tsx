@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,13 +27,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      // Fix 1: Yahan se 'dark' hata diya
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // Fix 2: Yeh line Next.js ko batati hai ki theme mismatch ko ignore karo
+      suppressHydrationWarning 
     >
       <body className="min-h-full flex flex-col dark:bg-black text-black dark:text-white">
-        <div className="relative w-full flex items-center justify-center">
-        <Navbar/>
-        </div>
-        {children}
+        <ThemeProvider
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative w-full flex items-center justify-center">
+            <Navbar/>
+          </div>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
