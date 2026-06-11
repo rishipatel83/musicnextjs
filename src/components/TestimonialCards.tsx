@@ -38,7 +38,7 @@ const musicSchoolTestimonials = [
 
 function MusicSchoolTestimonials() {
     return (
-        <div className="h-160 w-full dark:bg-black dark:bg-grid-white/[0.2] relative flex flex-col items-center justify-center overflow-hidden">
+        <div className="min-h-screen w-full dark:bg-black dark:bg-grid-white/[0.2] relative flex flex-col items-center justify-center overflow-hidden">
             <div
                 className={cn(
                     "absolute inset-0",
