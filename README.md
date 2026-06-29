@@ -1,7 +1,6 @@
 # 🎵 MusicNextJS
 
-<!--![Project Demo](./public/demo.gif) 
-*(Note: Replace this image with your actual project GIF. See instructions below.)*-->
+![Project Demo](./public/demo.gif) 
 
 MusicNextJS is a highly interactive, visually stunning frontend web application built for a music academy. It leverages the power of Next.js 16 (App Router) and features smooth, modern animations using Aceternity UI and Framer Motion.
 
